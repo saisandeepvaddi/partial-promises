@@ -1,23 +1,19 @@
 {
   "name": "partial-promises",
   "version": "1.0.0",
-  "description": "Make Promise.all return whatever promises it could resolve with in a time.",
+  "description":
+    "Make Promise.all return whatever promises it could resolve with in a time.",
   "main": "index.js",
   "scripts": {
     "dev": "babel src --out-dir dist --watch",
     "compile": "rm -rf dist && babel src --out-dir dist",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "jest --watch"
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/saisandeepvaddi/partial-promises.git"
   },
-  "keywords": [
-    "promises",
-    "promise",
-    "async",
-    "await"
-  ],
+  "keywords": ["promises", "promise", "async", "await"],
   "author": "Sai Sandeep Vaddi",
   "license": "MIT",
   "bugs": {
