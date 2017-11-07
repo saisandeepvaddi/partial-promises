@@ -1,13 +1,39 @@
-import promises from "./test-promises";
-import { getPartialPromises } from "../src/index";
+import createTimerPromise from "./test-promises";
+import { getPartialPromises, getPartialResults } from "../dist/index";
 
-test("Should return array of 2 promises that have < 2000ms", async () => {
-  const p = await getPartialPromises(promises, 3000, 15);
-  const results = await Promise.all(p);
-  const resolved = results.filter(a => a !== 15);
-  const timedOut = results.filter(a => a === 15);
-  console.log(`Resolved: ` + resolved);
-  console.log(`Timed Out: ` + timedOut);
+// Do not create promises array outside.
+// Second test always fails because by the time second test runs promises are resolved in first
 
-  expect(resolved).toHaveLength(3);
+describe("getPartialPromises: ", () => {
+  test("Resolve < 3000 to be 3 promises", async () => {
+    expect.assertions(1);
+    const promises = [
+      createTimerPromise(1000),
+      createTimerPromise(2000),
+      createTimerPromise(3000),
+      createTimerPromise(4000),
+      createTimerPromise(5000)
+    ];
+    const p = await getPartialPromises(promises, 3000, 15);
+    const results = await Promise.all(p);
+    const resolved = results.filter(a => a !== 15);
+    const timedOut = results.filter(a => a === 15);
+
+    expect(resolved).toHaveLength(3);
+  });
+});
+
+describe("getPartialResults", () => {
+  test("resolve < 3000 to be 3 values", async () => {
+    expect.assertions(1);
+    const promises = [
+      createTimerPromise(1000),
+      createTimerPromise(2000),
+      createTimerPromise(3000),
+      createTimerPromise(4000),
+      createTimerPromise(5000)
+    ];
+    const p = await getPartialResults(promises, 3000);
+    expect(p).toHaveLength(3);
+  });
 });
