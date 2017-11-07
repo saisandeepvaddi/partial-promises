@@ -1,0 +1,36 @@
+{
+  "name": "partial-promises",
+  "version": "1.0.0",
+  "description": "Make Promise.all return whatever promises it could resolve with in a time.",
+  "main": "index.js",
+  "scripts": {
+    "dev": "babel src --out-dir dist --watch",
+    "compile": "rm -rf dist && babel src --out-dir dist",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/saisandeepvaddi/partial-promises.git"
+  },
+  "keywords": [
+    "promises",
+    "promise",
+    "async",
+    "await"
+  ],
+  "author": "Sai Sandeep Vaddi",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/saisandeepvaddi/partial-promises/issues"
+  },
+  "homepage": "https://github.com/saisandeepvaddi/partial-promises#readme",
+  "devDependencies": {
+    "babel-cli": "^6.26.0",
+    "babel-plugin-transform-async-to-generator": "^6.24.1",
+    "babel-preset-env": "^1.6.1",
+    "jest": "^21.2.1"
+  },
+  "dependencies": {
+    "babel-polyfill": "^6.26.0"
+  }
+}
