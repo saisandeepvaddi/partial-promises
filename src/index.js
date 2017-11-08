@@ -35,7 +35,7 @@ exports.getPartialResults = async (
   }
 ) => {
   if (!Array.isArray(promises)) {
-    throw new Error(`getPartialPromises: promises must be array of promises`);
+    throw new Error(`getPartialResults: promises must be array of promises`);
   }
   const time = options.time || 2000;
   const resolveWith = options.resolveWith || 1;
