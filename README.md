@@ -34,7 +34,7 @@ Returns array of promises that will always resolve, either with their actual val
 - promises - array of promises
 - options
   - time
-    - time in msec after will _getPartialPromises_ returns whatever promises resolved till then.
+    - time in msec after _getPartialPromises_ returns whatever promises resolved till then.
     - default is 2000
   - resolveWith
     - value to be replaced for rejected and timed out 
@@ -72,14 +72,14 @@ Same as _getPartialPromises_ but intead of returning array of promises, returns 
 - promises - array of promises
 - options
   - time
-    - time in msec after will _getPartialPromises_ returns whatever promises resolved till then.
+    - time in msec after _getPartialResults_ returns whatever promises resolved till then.
     - default is 2000
   - resolveWith
     - value to be replaced for rejected and timed out 
-    - default is 1
+    - default is _1_
   - filter
-    - filters out results that are same as _resolveWith_ after
-    - default is true
+    - filters out results that are same as _resolveWith_
+    - default is _true_
 
 ```js
 const promises = [
@@ -92,14 +92,14 @@ const promises = [
 
     const p = await getPartialResults(promises, { time: 3000 });
     // [1000, 3000]
-
     // See ? You don't have to use Promise.all(p) & filter again like in getPartialPromises
+
     const q = await getPartialResults(promises, { time: 3000, filter: false, resolveWith : -1 });
-    // [1000, -1, 3000] no filtering of -1
+    // [1000, -1, 3000] no filtering of -1 which is result of rejected promise
 
 ```
 
 
 # License
 
-[MIT](/LICENSE)
+[MIT](/LICENSE) &copy; [Sai Sandeep Vaddi](https://github.com/saisandeepvaddi)
