@@ -1,34 +1,51 @@
 require("./babel-polyfill");
 
-const partialPromises = (promises, time, timedOut) =>
+const partialPromises = (promises, time, resolveWith) =>
   promises.map(userPromise => {
     return Promise.race([
       userPromise,
       new Promise(resolve => {
         const timer = setTimeout(() => {
           clearTimeout(timer);
-          resolve(timedOut);
+          resolve(resolveWith);
         }, time);
         return timer;
       })
-    ]).catch(e => new Promise(resolve => resolve(-1)));
+    ]).catch(e => new Promise(resolve => resolve(resolveWith)));
   });
 
-exports.getPartialPromises = (promises, time = 2000, timedOut = 1) => {
-  return partialPromises(promises, time, timedOut);
+exports.getPartialPromises = (
+  promises,
+  options = { time: 2000, resolveWith: 1 }
+) => {
+  if (!Array.isArray(promises)) {
+    throw new Error(`getPartialPromises: promises must be array of promises`);
+  }
+  const time = options.time || 2000;
+  const resolveWith = options.resolveWith || 1;
+  return partialPromises(promises, time, resolveWith);
 };
 
 exports.getPartialResults = async (
   promises,
-  time = 2000,
-  timedOut = 1,
-  filtered = true
+  options = {
+    time: 2000,
+    resolveWith: 1,
+    filter: true
+  }
 ) => {
-  const p = partialPromises(promises, time, timedOut);
+  if (!Array.isArray(promises)) {
+    throw new Error(`getPartialPromises: promises must be array of promises`);
+  }
+  const time = options.time || 2000;
+  const resolveWith = options.resolveWith || 1;
+  const filter = options.filter ? true : false;
+  const p = partialPromises(promises, time, resolveWith);
   const resolved = await Promise.all(p);
   let filteredResults = resolved;
-  if (filtered) {
-    filteredResults = filteredResults.filter(r => r !== timedOut);
+
+  if (filter) {
+    filteredResults = filteredResults.filter(r => r !== resolveWith);
   }
 
   return filteredResults;
