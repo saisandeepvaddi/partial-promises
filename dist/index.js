@@ -12,7 +12,11 @@ var partialPromises = function partialPromises(promises, time, timedOut) {
         resolve(timedOut);
       }, time);
       return timer;
-    })]);
+    })]).catch(function (e) {
+      return new Promise(function (resolve) {
+        return resolve(-1);
+      });
+    });
   });
 };
 

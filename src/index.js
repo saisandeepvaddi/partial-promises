@@ -11,7 +11,7 @@ const partialPromises = (promises, time, timedOut) =>
         }, time);
         return timer;
       })
-    ]);
+    ]).catch(e => new Promise(resolve => resolve(-1)));
   });
 
 exports.getPartialPromises = (promises, time = 2000, timedOut = 1) => {

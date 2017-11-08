@@ -1,11 +1,17 @@
-const createTimerPromise = timeout => {
+exports.createResolvePromise = timeout => {
   return new Promise(resolve => {
     const timer = setTimeout(() => {
       clearTimeout(timer);
       resolve(timeout);
     }, timeout);
-    return timer;
   });
 };
 
-export default createTimerPromise;
+exports.createRejectPromise = timeout => {
+  return new Promise((resolve, reject) => {
+    const timer = setTimeout(() => {
+      clearTimeout(timer);
+      reject(timeout);
+    }, timeout);
+  });
+};
