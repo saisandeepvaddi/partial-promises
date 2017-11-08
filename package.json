@@ -1,10 +1,13 @@
 {
   "name": "partial-promises",
-  "version": "1.0.0",
-  "description":
-    "Collect promises resolved within a timeout when using Promise.all([p])",
+  "version": "1.0.1",
+  "description": "Collect promises resolved within a timeout when using Promise.all([p])",
   "main": "dist/index.js",
-  "files": ["dist", "README.md", "package.json"],
+  "files": [
+    "dist",
+    "README.md",
+    "package.json"
+  ],
   "scripts": {
     "dev": "babel src --out-dir dist --watch",
     "compile": "rm -rf dist && babel src --out-dir dist",
@@ -15,7 +18,12 @@
     "type": "git",
     "url": "git+https://github.com/saisandeepvaddi/partial-promises.git"
   },
-  "keywords": ["promises", "promise", "async", "await"],
+  "keywords": [
+    "promises",
+    "promise",
+    "async",
+    "await"
+  ],
   "author": "Sai Sandeep Vaddi",
   "license": "MIT",
   "bugs": {
