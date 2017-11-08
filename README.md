@@ -35,10 +35,10 @@ Returns array of promises that will always resolve, either with their actual val
 - options
   - time
     - time in msec after _getPartialPromises_ returns whatever promises resolved till then.
-    - default is 2000
+    - default is **_2000_**
   - resolveWith
     - value to be replaced for rejected and timed out 
-    - default is 1
+    - default is **_1_**
 
 ## Note: 
 After using _getPartialPromises()_, returned promises can be filtered and take resolved and discard promises with _resolveWith_ value.
@@ -73,13 +73,13 @@ Same as _getPartialPromises_ but intead of returning array of promises, returns 
 - options
   - time
     - time in msec after _getPartialResults_ returns whatever promises resolved till then.
-    - default is 2000
+    - default is **_2000_**
   - resolveWith
     - value to be replaced for rejected and timed out 
-    - default is _1_
+    - default is **_1_**
   - filter
     - filters out results that are same as _resolveWith_
-    - default is _true_
+    - default is **_true_**
 
 ```js
 const promises = [
