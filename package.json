@@ -2,7 +2,7 @@
   "name": "partial-promises",
   "version": "1.0.0",
   "description":
-    "Make Promise.all return whatever promises it could resolve with in a time.",
+    "Collect promises resolved within a timeout when using Promise.all([p])",
   "main": "dist/index.js",
   "files": ["dist", "README.md", "package.json"],
   "scripts": {

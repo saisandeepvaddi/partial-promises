@@ -2,8 +2,6 @@
 
 Collect promises resolved within a timeout when using `Promise.all([p])` and discard __pending__ and __rejected__ promises.
 
-## Will publish to [NPM](https://www.npmjs.com/) shortly
-
 # Usecases
 ```js
   // Consider the following scenario
@@ -24,6 +22,34 @@ Collect promises resolved within a timeout when using `Promise.all([p])` and dis
   // But you want promises that get resolved and discard rejects and pendings after a timeout.
 
   // Enter partial-promises 🔥🔥🔥
+
+```
+
+# Installation & Usage
+
+```shell
+  $> npm install partial-promises
+
+  (or)
+
+  $> yarn add partial-promises
+```
+```js
+  import { getPartialPromises, getPartialResults } from "partial-promises";
+
+  // or
+
+  const pp = require("partial-promises");
+
+```
+
+```js
+  const p = pp.getPartialPromises(promises, { time: 4000, resolveWith: "hello" });
+  Promise.all(p).then(d => console.log(d));
+
+  const pr = pp.getPartialResults(promises, { time: 4000 });
+  pr.then(a => console.log(a));
+
 
 ```
 
