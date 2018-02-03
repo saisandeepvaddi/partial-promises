@@ -1,4 +1,7 @@
-require("./babel-polyfill");
+if((typeof window !== 'undefined' && !window._babelPolyfill) || 
+  (typeof global !== 'undefined' && !global._babelPolyfill)) {
+  require('babel-polyfill')
+}
 
 const partialPromises = (promises, time, resolveWith) =>
   promises.map(userPromise => {
