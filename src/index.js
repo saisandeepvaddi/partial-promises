@@ -1,4 +1,6 @@
-require("./babel-polyfill");
+require('babel-core').transform('code', {
+  plugins: ['transform-runtime']
+});
 
 const partialPromises = (promises, time, resolveWith) =>
   promises.map(userPromise => {
