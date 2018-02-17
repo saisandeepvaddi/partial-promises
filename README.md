@@ -53,6 +53,10 @@ Collect promises resolved within a timeout when using `Promise.all([p])` and dis
 
 ```
 
+##Note:
+
+When using _**create-react-app**_ or when _babel-core_ is not part of your dependencies, use **v1.0.1**. This will be fixed soon.
+
 # Methods
 ## 1. getPartialPromises(promises[, options])
 Returns array of promises that will always resolve, either with their actual value or __options.resolveWith__ value
