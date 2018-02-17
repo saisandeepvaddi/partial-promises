@@ -109,7 +109,7 @@ Same as _getPartialPromises_ but intead of returning array of promises, returns 
     - default is **_1_**
   - filter
     - filters out results that are same as _resolveWith_
-    - default is **_true_**
+    - default is **_false_**
 
 ```js
 const promises = [
@@ -120,7 +120,7 @@ const promises = [
       resolvePromise(5000)
     ];
 
-    const p = await getPartialResults(promises, { time: 3000 });
+    const p = await getPartialResults(promises, { time: 3000, filter: true });
     // [1000, 3000]
     // See ? You don't have to use Promise.all(p) & filter again like in getPartialPromises
 
