@@ -21,18 +21,22 @@ const pp = require("partial-promises");
 ```
 
 ```js
+const promises = [
+  createResolvePromise(1000), // Promise that resolves at 1sec with 1000
+  createRejectPromise(2000), // Promise that rejects
+  createResolvePromise(3000), // Promise that resolves at 3sec with 3000
+  createResolvePromise(4000), // Promise that resolves at 4sec with 4000
+  createResolvePromise(5000), // Promise that resolves at 5sec with 5000. We don't want to wait 5sec. Out limit is 4sec
+];
+
 const p = pp.getPartialPromises(promises, { time: 4000, resolveWith: "hello" });
-Promise.all(p).then(d => console.log(d));
+Promise.all(p).then(d => console.log(d)); // [1000, "hello", 3000, 4000]
 
 const pr = pp.getPartialResults(promises, { time: 4000 });
-pr.then(a => console.log(a));
+pr.then(a => console.log(a)); // [1000, 3000, 4000]
 ```
 
-##Note:
-
-When using _**create-react-app**_ or when _babel-core_ is not part of your dependencies, use **v1.0.1**. This will be fixed soon.
-
-# Methods
+# API
 
 ## 1. getPartialPromises(promises[, options])
 
