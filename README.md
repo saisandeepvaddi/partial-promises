@@ -36,6 +36,8 @@ const pr = pp.getPartialResults(promises, { time: 4000 });
 pr.then(a => console.log(a)); // [1000, 3000, 4000]
 ```
 
+Check [test/index.test.ts](test/index.test.ts) for more usage examples.
+
 # API
 
 ## 1. getPartialPromises(promises[, options])
