@@ -30,7 +30,7 @@ const promises = [
 ];
 
 const p = pp.getPartialPromises(promises, { time: 4000, resolveWith: "hello" });
-Promise.all(p).then(d => console.log(d)); // [1000, "hello", 3000, 4000]
+Promise.all(p).then(d => console.log(d)); // [1000, "hello", 3000, 4000, "hello"]
 
 const pr = pp.getPartialResults(promises, { time: 4000 });
 pr.then(a => console.log(a)); // [1000, 3000, 4000]
