@@ -1,4 +1,4 @@
-exports.createResolvePromise = timeout => {
+export const createResolvePromise = (timeout: number) => {
   return new Promise(resolve => {
     const timer = setTimeout(() => {
       clearTimeout(timer);
@@ -7,8 +7,8 @@ exports.createResolvePromise = timeout => {
   });
 };
 
-exports.createRejectPromise = timeout => {
-  return new Promise((resolve, reject) => {
+export const createRejectPromise = (timeout: number) => {
+  return new Promise((_resolve, reject) => {
     const timer = setTimeout(() => {
       clearTimeout(timer);
       reject(timeout);
