@@ -1,32 +1,6 @@
 # partial-promises
 
-Collect promises resolved within a timeout when using `Promise.all([p])` and discard **pending** and **rejected** promises.
-
-# Usecases
-
-```js
-// Consider the following scenario
-
-// will_resolve -> promise that will resolve
-// will_reject -> promises that will reject
-// will_take_long -> promise that will take too long and stuck in pending
-
-const i_wont_resolve = await Promise.all([will_resolve, will_reject]);
-
-// Because of will_reject, you won't know what will_resolve promise resolves to and results will have to catch
-
-const neither_do_i_for_long_time = await Promise.all([
-  will_resolve,
-  will_take_long,
-]);
-
-// Because of will_take_long, will_resolve also will be waiting
-// Ofcouse, that is the purpose of Promise.all, to wait for all promises to resolve or reject and return as a single promise
-
-// But you want promises that get resolved and discard rejects and pendings after a timeout.
-
-// Enter partial-promises 🔥🔥🔥
-```
+Cancel reject/pending promises after a timeout. You pass an array of promises, if some of them stay in pending or reject, `partial-promises` cancels those promises and returns only those that will resolve within a timeout.
 
 # Installation & Usage
 
@@ -39,15 +13,15 @@ const neither_do_i_for_long_time = await Promise.all([
 ```
 
 ```js
-import { getPartialPromises, getPartialResults } from 'partial-promises';
+import { getPartialPromises, getPartialResults } from "partial-promises";
 
 // or
 
-const pp = require('partial-promises');
+const pp = require("partial-promises");
 ```
 
 ```js
-const p = pp.getPartialPromises(promises, { time: 4000, resolveWith: 'hello' });
+const p = pp.getPartialPromises(promises, { time: 4000, resolveWith: "hello" });
 Promise.all(p).then(d => console.log(d));
 
 const pr = pp.getPartialResults(promises, { time: 4000 });
@@ -125,14 +99,16 @@ const promises = [
   resolvePromise(5000),
 ];
 
-const p = await getPartialResults(promises, { time: 3000, filter: true });
+const p = await getPartialResults(promises, { time: 3000 });
 // [1000, 3000]
 // See ? You don't have to use Promise.all(p) & filter again like in getPartialPromises
+
+// You can choose to not filter automatically so that you want to filter later.
 
 const q = await getPartialResults(promises, {
   time: 3000,
   filter: false,
-  resolveWith: -1,
+  resolveWith: -1, // default is 1
 });
 // [1000, -1, 3000] no filtering of -1 which is result of rejected promise
 ```

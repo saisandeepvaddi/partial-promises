@@ -5,11 +5,13 @@
   "module": "dist/partial-promises.esm.js",
   "typings": "dist/index.d.ts",
   "files": [
-    "dist"
+    "dist",
+    "package.json",
+    "README.md"
   ],
   "scripts": {
     "start": "tsdx watch",
-    "build": "tsdx build",
+    "build": "tsdx build --format cjs,esm,umd --name PartialPromises --target node,web",
     "test": "tsdx test",
     "lint": "tsdx lint"
   },
