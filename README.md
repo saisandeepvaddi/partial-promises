@@ -1,6 +1,6 @@
 # partial-promises
 
-Cancel reject/pending promises after a timeout. You pass an array of promises, if some of them stay in pending or reject, `partial-promises` cancels those promises and returns only those that will resolve within a timeout.
+Stop waiting at reject/pending promises after a timeout. You pass an array of promises, if some of them stay in pending or reject, `partial-promises` returns only those that will resolve within a timeout.
 
 # Installation & Usage
 
